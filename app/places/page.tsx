@@ -1,16 +1,17 @@
 "use client"
 
+import Link from "next/link"
 import { useState } from "react"
 
 const places = [
-  { name: "เชียงใหม่", detail: "ดอยอินทนนท์" },
-  { name: "กระบี่", detail: "ทะเลอ่าวนาง" },
-  { name: "ภูเก็ต", detail: "หาดป่าตอง" },
-  { name: "กรุงเทพ", detail: "วัดพระแก้ว" },
+  { id:1, name:"เชียงใหม่", detail:"ดอยอินทนนท์" },
+  { id:2, name:"กระบี่", detail:"ทะเลอ่าวนาง" },
+  { id:3, name:"ภูเก็ต", detail:"หาดป่าตอง" },
+  { id:4, name:"กรุงเทพ", detail:"วัดพระแก้ว" },
 ]
 
 export default function Places() {
-  const [search, setSearch] = useState("")
+  const [search,setSearch]=useState("")
 
   const filtered = places.filter(p =>
     p.name.includes(search)
@@ -19,22 +20,24 @@ export default function Places() {
   return (
     <main className="p-10">
 
-      <h1 className="text-3xl font-bold mb-6">
-        ค้นหาสถานที่ท่องเที่ยว
+      <h1 className="text-3xl font-bold mb-4">
+        ค้นหาสถานที่
       </h1>
 
       <input
-        placeholder="พิมพ์ชื่อจังหวัด..."
-        className="border p-2 mb-6 w-full"
+        placeholder="พิมพ์จังหวัด..."
+        className="border p-2 w-full mb-6"
         onChange={(e)=>setSearch(e.target.value)}
       />
 
       <div className="grid gap-4">
-        {filtered.map((p,i)=>(
-          <div key={i} className="p-4 border rounded">
-            <h2 className="text-xl font-bold">{p.name}</h2>
-            <p>{p.detail}</p>
-          </div>
+        {filtered.map(p=>(
+          <Link key={p.id} href={`/places/${p.id}`}>
+            <div className="border p-4 rounded hover:bg-gray-100 cursor-pointer">
+              <h2 className="text-xl font-bold">{p.name}</h2>
+              <p>{p.detail}</p>
+            </div>
+          </Link>
         ))}
       </div>
 

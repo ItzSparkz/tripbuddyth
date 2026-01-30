@@ -6,7 +6,7 @@ export default function About() {
       </h1>
 
       <p className="mt-4">
-        เว็บนี้เป็นโปรเจคเพื่อการศึกษา
+        TripbuddyTH เป็นเว็บแนะนำสถานที่ท่องเที่ยว
         สำหรับแนะนำสถานที่ท่องเที่ยวในไทย
       </p>
     </main>
