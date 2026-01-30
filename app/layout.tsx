@@ -1,10 +1,15 @@
+"use client"
 import "./globals.css"
 import Link from "next/link"
+import { useState } from "react"
 
 export default function RootLayout({children}:{children:React.ReactNode}){
+
+const [dark,setDark]=useState(false)
+
 return(
 <html lang="th">
-<body className="bg-gradient-to-br from-blue-50 via-white to-purple-100">
+<body className={dark?"bg-black text-white":"bg-gradient-to-br from-blue-50 via-white to-purple-100"}>
 
 <nav className="fixed w-full backdrop-blur-lg bg-white/60 shadow-md z-50">
 <div className="max-w-6xl mx-auto flex justify-between p-4">
@@ -14,11 +19,17 @@ TripbuddyTH
 </h1>
 
 <div className="space-x-6 font-medium">
-<Link href="/" className="hover:text-blue-600">Home</Link>
-<Link href="/places" className="hover:text-blue-600">Places</Link>
-<Link href="/marketplace" className="hover:text-blue-600">Marketplace</Link>
-<Link href="/favorites" className="hover:text-blue-600">Favorites</Link>
-<Link href="/about" className="hover:text-blue-600">About</Link>
+<Link href="/">Home</Link>
+<Link href="/places">Places</Link>
+<Link href="/marketplace">Marketplace</Link>
+<Link href="/login">Login</Link>
+
+<button
+onClick={()=>setDark(!dark)}
+className="ml-4 bg-black text-white px-3 py-1 rounded"
+>
+{dark?"☀️":"🌙"}
+</button>
 </div>
 
 </div>
